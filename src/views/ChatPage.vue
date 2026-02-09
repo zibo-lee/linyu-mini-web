@@ -97,15 +97,6 @@
             </div>
           </div>
           <div class="mb-[10px]">
-            <linyu-card-carousel
-              :play="true"
-              :images="[
-                { key: 'github', img: '/github-bg.png' },
-                { key: 'bili', img: '/bili-bg.png' },
-                { key: 'qq', img: '/qq-bg.png' },
-              ]"
-              @click="(card) => handlerCardClick(card)"
-            />
             <!--            <img-->
             <!--              src="/ad.png"-->
             <!--              alt=""-->
@@ -353,7 +344,6 @@ import ModifyUserInfo from '@/components/ModifyUserInfo.vue'
 import { useUserInfoStore } from '@/stores/useUserInfoStore.js'
 import LinyuLoading from '@/components/LinyuLoading.vue'
 import ChatSkeleton from '@/components/ChatSkeleton.vue'
-import LinyuCardCarousel from '@/components/LinyuCardCarousel.vue'
 import Notify from '@/components/Notify.vue'
 
 let version = import.meta.env.VITE_LINYU_VERSION
@@ -605,26 +595,6 @@ onUnmounted(() => {
 const scrollToBottom = () => {
   if (chatShowAreaRef.value) {
     nextTick(() => (chatShowAreaRef.value.scrollTop = chatShowAreaRef.value.scrollHeight))
-  }
-}
-
-//卡片点击
-const handlerCardClick = (card) => {
-  switch (card.key) {
-    case 'bili':
-      window.open('https://space.bilibili.com/135427028/channel/series', '_blank')
-      break
-    case 'github':
-      window.open('https://github.com/linyu-im', '_blank')
-      break
-    case 'qq':
-      navigator.clipboard.writeText('729158695')
-      showToast('QQ群号，已复制到粘贴板~')
-      break
-    case 'ad':
-      navigator.clipboard.writeText('cershy1120')
-      showToast('联系VX，已复制到粘贴板~')
-      break
   }
 }
 
