@@ -69,13 +69,47 @@ const userList = computed(() => {
   }
 })
 
+// 将onDataChange提前定义，确保onInputText可以调用
+const onDataChange = () => {
+  if (inputRef.value) {
+    const newNodeList = []
+    const editorChildNodes = [].slice.call(inputRef.value.childNodes)
+    if (editorChildNodes.length > 0) {
+      editorChildNodes.forEach((element) => {
+        // 文本
+        if (element.nodeName === '#text') {
+          if (element.data && element.data.length > 0) {
+            newNodeList.push({
+              type: 'text',
+              content: element.data,
+            })
+          }
+        }
+        // button
+        if (element.nodeName === 'BUTTON') {
+          newNodeList.push({
+            type: 'at',
+            content: element.user,
+          })
+        }
+      })
+    }
+    nodeList = newNodeList
+  }
+}
+
 const onInputText = () => {
   inputValue.value = inputRef.value.innerText
+  // 同步更新nodeList，确保getNodeList()返回最新数据
+  onDataChange()
 }
 
 watch(inputValue, () => {
   if (!inputValue.value) {
-    inputRef.value.innerText = ''
+    if (inputRef.value) {
+      inputRef.value.innerHTML = ''
+      nodeList = []
+    }
   } else {
     onDataChange()
   }
@@ -288,34 +322,6 @@ const getAtMentionsPosition = () => {
   }
 
   return { x, y }
-}
-
-const onDataChange = () => {
-  if (inputRef.value) {
-    const newNodeList = []
-    const editorChildNodes = [].slice.call(inputRef.value.childNodes)
-    if (editorChildNodes.length > 0) {
-      editorChildNodes.forEach((element) => {
-        // 文本
-        if (element.nodeName === '#text') {
-          if (element.data && element.data.length > 0) {
-            newNodeList.push({
-              type: 'text',
-              content: element.data,
-            })
-          }
-        }
-        // button
-        if (element.nodeName === 'BUTTON') {
-          newNodeList.push({
-            type: 'at',
-            content: element.user,
-          })
-        }
-      })
-    }
-    nodeList = newNodeList
-  }
 }
 
 const insertInputText = (content) => {

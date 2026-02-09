@@ -642,7 +642,7 @@ const onGetMsgRecord = () => {
       if (res.code === 0) {
         const newMessages = res.data
         if (newMessages.length > 0) {
-          msgRecord.value = [...newMessages.reverse(), ...msgRecord.value]
+          msgRecord.value = [...newMessages, ...msgRecord.value]
           recordIndex += newMessages.length
           nextTick(() => {
             if (recordIndex === newMessages.length) {

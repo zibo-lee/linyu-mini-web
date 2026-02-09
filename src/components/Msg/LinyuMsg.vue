@@ -7,7 +7,7 @@
     </template>
     <div v-else class="msg-box-wrapper" :class="{ right: right }">
       <linyu-avatar
-        :info="msgStore.userListMap.get(props.msg.fromId)"
+        :info="userInfo"
         size="40px"
         class="mr-[5px] ml-[5px]"
       />
@@ -15,19 +15,19 @@
         <!--用户信息-->
         <div class="mgs-box-user-info" :class="{ right: right }">
           <div class="msg-username">
-            {{ msgStore.userListMap.get(props.msg.fromId).name }}
+            {{ userInfo?.name ?? props.msg.fromInfo?.name ?? '未知用户' }}
           </div>
           <div class="mgs-ip ml-[2px] mr-[2px]">
-            [{{ props.msg.fromInfo.ipOwnership ?? '未知' }}]
+            [{{ props.msg.fromInfo?.ipOwnership ?? '未知' }}]
           </div>
           <!--用户徽章-->
-          <div v-for="(item, index) in props.user.badge" :key="index" class="flex">
-            <linyu-tooltip :content="badges[item].des">
+          <div v-for="(item, index) in userBadges" :key="index" class="flex">
+            <linyu-tooltip :content="badges[item]?.des">
               <img
                 class="mr-[1px] ml-[1px]"
                 width="22px"
                 height="22px"
-                :src="`/badge/${badges[item].icon}`"
+                :src="`/badge/${badges[item]?.icon}`"
                 alt=""
                 draggable="false"
               />
@@ -46,6 +46,7 @@
   </div>
 </template>
 <script setup>
+import { computed } from 'vue'
 import LinyuMsgContent from '@/components/Msg/LinyuMsgContent.vue'
 import LinyuAvatar from '@/components/LinyuAvatar.vue'
 import RecallMsg from '@/components/Msg/MsgContent/RecallMsg.vue'
@@ -67,7 +68,18 @@ const badges = {
   crown: { icon: 'crown.png', des: '~首屈一指~' },
   clover: { icon: 'clover.png', des: '~初出茅庐~' },
   diamond: { icon: 'diamond.png', des: '~历久弥新~' },
+  snowflake: { icon: 'snowflake.png', des: '~雪花~' },
 }
+
+// 安全获取用户信息
+const userInfo = computed(() => {
+  return props.user || msgStore.userListMap.get(props.msg.fromId) || props.msg.fromInfo
+})
+
+// 安全获取用户徽章
+const userBadges = computed(() => {
+  return userInfo.value?.badge || props.msg.fromInfo?.badge || []
+})
 
 const right = props.msg.fromId === userInfoStore.userId
 </script>
