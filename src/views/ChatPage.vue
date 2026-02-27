@@ -163,6 +163,17 @@
                     v-if="msgStore.referenceMsg.type === MessageType.Call"
                     :msg="msgStore.referenceMsg"
                   />
+                  <div
+                    v-if="msgStore.referenceMsg.type === MessageType.Image"
+                    class="flex items-center"
+                  >
+                    <div>{{ msgStore.referenceMsg.fromInfo.name }} :</div>
+                    <img 
+                      :src="`${SERVICE_URL}/api/v1/file/${msgStore.referenceMsg.message}`" 
+                      alt="图片" 
+                      class="h-[40px] ml-[5px] rounded"
+                    />
+                  </div>
                   <div class="ml-[10px]">
                     <linyu-icon-button
                       @click="msgStore.referenceMsg = null"
@@ -186,6 +197,16 @@
                     />
                   </div>
                   <div v-if="targetId !== '1'" class="flex gap-[2px]">
+                    <div class="emoji-button" @click="imageInput.click()">
+                      <input
+                        type="file"
+                        ref="imageInput"
+                        accept="image/*"
+                        @change="handlerSendImage"
+                        style="display: none"
+                      />
+                      <span class="text-[20px]">🖼️</span>
+                    </div>
                     <div class="emoji-button" @click="fileInput.click()">
                       <input
                         type="file"
@@ -319,6 +340,7 @@ import MessageApi from '@/api/message.js'
 import EventBus from '@/utils/eventBus.js'
 import UserApi from '@/api/user.js'
 import FileApi from '@/api/file.js'
+import { SERVICE_URL } from '@/utils/axios.js'
 import LinyuTooltip from '@/components/LinyuTooltip.vue'
 import ws from '@/utils/ws.js'
 import LinyuTextButton from '@/components/LinyuTextButton.vue'
@@ -383,6 +405,7 @@ const fileInfo = reactive({
   file: null,
 })
 const fileInput = ref()
+const imageInput = ref()
 const modifyUserInfoIsOpen = ref(false)
 const isSendLoading = ref(false)
 let chatRecordLoadingTimer = null
@@ -422,6 +445,49 @@ const handlerSendFile = (event) => {
     event.target.value = ''
   } else {
     showToast('文件不正确~', true)
+  }
+}
+
+// 发送图片
+const handlerSendImage = async (event) => {
+  const files = event.target.files
+  if (files && files.length > 0) {
+    const file = files[0]
+    // 检查是否为图片类型
+    if (!file.type.startsWith('image/')) {
+      showToast('请选择图片文件~', true)
+      event.target.value = ''
+      return
+    }
+    // 限制图片大小为5MB
+    if (file.size > 5 * 1024 * 1024) {
+      showToast('图片大小不能超过5MB~', true)
+      event.target.value = ''
+      return
+    }
+    try {
+      isSendLoading.value = true
+      scrollToBottom()
+      // 上传图片
+      const uploadRes = await FileApi.upload(file)
+      if (uploadRes.code === 0) {
+        // 发送图片消息
+        const msg = {
+          content: uploadRes.data.filename,
+          type: MessageType.Image,
+        }
+        onSendMsg(msg)
+      } else {
+        showToast(uploadRes.msg || '图片上传失败~', true)
+      }
+    } catch (error) {
+      showToast('图片上传失败~', true)
+    } finally {
+      isSendLoading.value = false
+      event.target.value = ''
+    }
+  } else {
+    showToast('请选择图片文件~', true)
   }
 }
 

@@ -3,4 +3,5 @@ export const MessageType = {
   Recall: 'recall', // 撤回
   Emoji: 'emoji', // 表情
   Call: 'call', //音视频
+  Image: 'image', // 图片
 }

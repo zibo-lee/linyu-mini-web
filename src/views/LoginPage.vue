@@ -26,7 +26,7 @@
             <div
               class="text-[28px] text-[rgb(var(--text-color))] font-[600] leading-[28px] mb-[10px]"
             >
-              Linyu在线聊天群
+             sk的朋友圈
             </div>
             <div class="text-[18px] text-[rgba(var(--text-color),0.7)] leading-[20px]">
               欢迎使用林语mini

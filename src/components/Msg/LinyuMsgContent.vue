@@ -15,6 +15,9 @@
       <div v-if="props.msg.type === MessageType.Call">
         <call-msg :msg="props.msg" :right="right" />
       </div>
+      <div v-if="props.msg.type === MessageType.Image">
+        <image-msg :src="props.msg.message" />
+      </div>
     </div>
     <!--消息相关操作-->
     <transition name="fade">
@@ -55,6 +58,7 @@ import { MessageType } from '@/constant/messageType.js'
 import { TextContentType } from '@/constant/textContentType.js'
 import CallMsg from '@/components/Msg/MsgContent/CallMsg.vue'
 import MarkDownTextMsg from '@/components/Msg/MsgContent/MarkDownTextMsg.vue'
+import ImageMsg from '@/components/Msg/MsgContent/ImageMsg.vue'
 
 const showToast = useToast()
 const msgStore = useChatMsgStore()
