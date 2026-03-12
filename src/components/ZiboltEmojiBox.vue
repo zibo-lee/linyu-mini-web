@@ -2,35 +2,35 @@
   <div class="emoji-box">
     <div class="emoji-content">
       <div v-for="(emoji, index) in currentEmojiList" :key="index">
-        <linyu-tooltip :content="emoji.name">
-          <linyu-img
+        <zibolt-tooltip :content="emoji.name">
+          <zibolt-img
             @click="() => handlerEmoji(emoji.icon)"
             :src="emoji.icon"
             width="32px"
             height="32px"
           />
-        </linyu-tooltip>
+        </zibolt-tooltip>
       </div>
     </div>
     <div class="emoji-type">
       <div v-for="(emoji, index) in emojis" :key="index">
-        <linyu-tooltip :content="emoji.name">
-          <linyu-img
+        <zibolt-tooltip :content="emoji.name">
+          <zibolt-img
             :src="emoji.icon"
             width="28px"
             height="28px"
             :selected="index === currentSelectedIndex"
             @click="currentSelectedIndex = index"
           />
-        </linyu-tooltip>
+        </zibolt-tooltip>
       </div>
     </div>
   </div>
 </template>
 <script setup>
 import emojis from '@/emoji/emoji.js'
-import LinyuImg from '@/components/LinyuImg.vue'
-import LinyuTooltip from '@/components/LinyuTooltip.vue'
+import ZiboltImg from '@/components/ZiboltImg.vue'
+import ZiboltTooltip from '@/components/ZiboltTooltip.vue'
 import { ref, watch } from 'vue'
 
 const currentSelectedIndex = ref(0)

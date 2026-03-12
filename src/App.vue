@@ -1,7 +1,7 @@
 <template>
   <ToastProvider>
     <div :data-theme="themeStore.theme">
-      <linyu-dialog
+      <zibolt-dialog
         :is-open="globalStore.isOpenGlobalDialog"
         :title="globalStore.dialogTitle"
         :content="globalStore.dialogContent"
@@ -17,7 +17,7 @@
 import { RouterView, useRouter } from 'vue-router'
 import { useThemeStore } from '@/stores/useThemeStore.js'
 import ToastProvider from '@/components/ToastProvider.vue'
-import LinyuDialog from '@/components/LinyuDialog.vue'
+import ZiboltDialog from '@/components/ZiboltDialog.vue'
 import { useGlobalStore } from '@/stores/useGlobalStore.js'
 import ws from '@/utils/ws.js'
 import { useUserInfoStore } from '@/stores/useUserInfoStore.js'

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="linyu-input-wrapper"
+    class="zibolt-input-wrapper"
     :style="`width:${props.width};
          border-radius:${props.radius};
          height:${props.height};
@@ -8,12 +8,12 @@
          padding:${props.padding};
          background-color: ${props.backgroundColor};`"
   >
-    <div v-if="props.label" class="linyu-input-label" :class="{ readonly: props.readonly }">
+    <div v-if="props.label" class="zibolt-input-label" :class="{ readonly: props.readonly }">
       {{ props.label }}
     </div>
     <input
       ref="inputRef"
-      class="linyu-input"
+      class="zibolt-input"
       :class="{ readonly: props.readonly }"
       :type="props.type"
       :readonly="props.readonly"
@@ -22,7 +22,7 @@
       @keydown.enter="(e) => emit('keydown.enter', e)"
       @input="handleInput"
     />
-    <div v-if="props.limit" class="linyu-input-limit">
+    <div v-if="props.limit" class="zibolt-input-limit">
       {{ value.toString().trim().length }}/{{ props.limit }}
     </div>
   </div>
@@ -91,7 +91,7 @@ const emit = defineEmits(['keydown.enter'])
 </script>
 
 <style scoped lang="less">
-.linyu-input-wrapper {
+.zibolt-input-wrapper {
   padding: 0 10px;
   width: 100%;
   height: 50px;
@@ -102,7 +102,7 @@ const emit = defineEmits(['keydown.enter'])
   align-items: center;
   color: rgb(var(--text-color));
 
-  .linyu-input-label {
+  .zibolt-input-label {
     margin-right: 10px;
     min-width: 70px;
     max-width: 70px;
@@ -114,7 +114,7 @@ const emit = defineEmits(['keydown.enter'])
     }
   }
 
-  .linyu-input {
+  .zibolt-input {
     width: 100%;
     outline: none;
     background-color: transparent;
@@ -128,7 +128,7 @@ const emit = defineEmits(['keydown.enter'])
     }
   }
 
-  .linyu-input-limit {
+  .zibolt-input-limit {
     width: 50px;
     flex-shrink: 1;
     display: flex;

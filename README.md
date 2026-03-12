@@ -2,7 +2,7 @@
   <img width="128px" src=".github/logo.png" />
 </p>
 <div  align="center">
-<h1>Linyu-Mini</h1>
+<h1>ZiboltChat</h1>
 <p>一个轻量级的在线聊天室系统，支持实时消息交流，适合多场景使用。系统采用轻量级架构，具备快速响应能力，同时提供多种实用功能，如用户登录、消息记录、群组聊天等，确保良好的用户体验和高效的沟通效果</p>
 <img src="https://img.shields.io/badge/Vue-3.0-42b983?logo=vue.js&logoColor=42b983">
 <img src="https://img.shields.io/badge/Vite-5.0-646cff?logo=vite&logoColor=646cff">
@@ -13,7 +13,7 @@
 
 ## 介绍
 
-林语Mini（Linyu-mini）是一款基于 Vite 5 和 Vue 3 构建的高性能即时通讯在线聊天系统。系统以轻量化设计为核心，具备快速部署和便捷扩展的特点，适用于企业内部协作、团队沟通以及小型社交平台等多种场景。
+ZiboltChat 是一款基于 Vite 5 和 Vue 3 构建的高性能即时通讯在线聊天系统。系统以轻量化设计为核心，具备快速部署和便捷扩展的特点，适用于企业内部协作、团队沟通以及小型社交平台等多种场景。
 
 ## 相关环境
 
@@ -51,11 +51,11 @@
 ## 安装与运行
 
 ```bash
-# 克隆linyu-mini项目
-git clone https://github.com/linyu-im/linyu-mini-web.git
+# 克隆ZiboltChat项目
+git clone https://github.com/zibolt-chat/zibolt-chat-web.git
 
 # 进入项目目录
-cd linyu-mini-web
+cd zibolt-chat-web
 
 # 安装依赖
 npm install

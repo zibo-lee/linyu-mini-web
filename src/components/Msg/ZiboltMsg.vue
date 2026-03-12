@@ -6,7 +6,7 @@
       <recall-msg :msg="msg" />
     </template>
     <div v-else class="msg-box-wrapper" :class="{ right: right }">
-      <linyu-avatar
+      <zibolt-avatar
         :info="userInfo"
         size="40px"
         class="mr-[5px] ml-[5px]"
@@ -22,10 +22,10 @@
           </div>
         </div>
         <!--消息内容-->
-        <linyu-msg-content :right="right" :msg="props.msg" />
+        <zibolt-msg-content :right="right" :msg="props.msg" />
         <!--引用信息-->
         <div class="msg-box-info-reference" v-if="props.msg.referenceMsg" :class="{ right: right }">
-          <linyu-reference-content :msg="props.msg.referenceMsg" />
+          <zibolt-reference-content :msg="props.msg.referenceMsg" />
           <i class="iconfont icon-zhiding ml-[5px]" />
         </div>
       </div>
@@ -34,10 +34,10 @@
 </template>
 <script setup>
 import { computed } from 'vue'
-import LinyuMsgContent from '@/components/Msg/LinyuMsgContent.vue'
-import LinyuAvatar from '@/components/LinyuAvatar.vue'
+import ZiboltMsgContent from '@/components/Msg/ZiboltMsgContent.vue'
+import ZiboltAvatar from '@/components/ZiboltAvatar.vue'
 import RecallMsg from '@/components/Msg/MsgContent/RecallMsg.vue'
-import LinyuReferenceContent from '@/components/Msg/LinyuReferenceContent.vue'
+import ZiboltReferenceContent from '@/components/Msg/ZiboltReferenceContent.vue'
 import TimeMsg from '@/components/Msg/MsgContent/TimeMsg.vue'
 import { useUserInfoStore } from '@/stores/useUserInfoStore.js'
 import { useChatMsgStore } from '@/stores/useChatMsgStore.js'

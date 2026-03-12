@@ -1,5 +1,5 @@
 <template>
-  <linyu-modal :is-open="isOpen">
+  <zibolt-modal :is-open="isOpen">
     <div class="notify" @click.stop>
       <div class="notify-content">
         <div class="content-title">{{ notify?.notifyTitle }}</div>
@@ -20,11 +20,11 @@
         />
       </div>
     </div>
-  </linyu-modal>
+  </zibolt-modal>
 </template>
 
 <script setup>
-import LinyuModal from '@/components/LinyuModal.vue'
+import ZiboltModal from '@/components/ZiboltModal.vue'
 import BorderGradientButton from '@/components/BorderGradientButton.vue'
 import { onMounted, ref } from 'vue'
 import NotifyApi from '@/api/notify.js'

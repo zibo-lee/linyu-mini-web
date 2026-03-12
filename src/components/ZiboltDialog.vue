@@ -9,16 +9,16 @@
           <div>{{ props.content }}</div>
         </div>
         <div class="flex justify-end">
-          <linyu-button type="minor" style="width: 80px" @click="onCancel">取 消</linyu-button>
-          <linyu-button style="width: 80px; margin-left: 10px" @click="onOk">确 定</linyu-button>
+          <zibolt-button type="minor" style="width: 80px" @click="onCancel">取 消</zibolt-button>
+          <zibolt-button style="width: 80px; margin-left: 10px" @click="onOk">确 定</zibolt-button>
         </div>
       </div>
     </div>
   </CustomModal>
 </template>
 <script setup>
-import CustomModal from '@/components/LinyuModal.vue'
-import LinyuButton from '@/components/LinyuButton.vue'
+import CustomModal from '@/components/ZiboltModal.vue'
+import ZiboltButton from '@/components/ZiboltButton.vue'
 
 const props = defineProps({
   title: {

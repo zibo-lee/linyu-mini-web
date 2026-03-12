@@ -1,7 +1,7 @@
 <template>
   <div>
     <slot></slot>
-    <linyu-toast
+    <zibolt-toast
       v-for="toast in toasts"
       :key="toast.id"
       :message="toast.message"
@@ -14,12 +14,12 @@
 
 <script>
 import { ref, provide, inject } from 'vue'
-import LinyuToast from '@/components/LinyuToast.vue'
+import ZiboltToast from '@/components/ZiboltToast.vue'
 
 const ToastSymbol = Symbol()
 export const useToast = () => inject(ToastSymbol)
 export default {
-  components: { LinyuToast },
+  components: { ZiboltToast },
   setup() {
     const toasts = ref([])
 

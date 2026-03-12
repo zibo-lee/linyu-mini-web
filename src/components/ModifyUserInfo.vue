@@ -1,15 +1,15 @@
 <template>
-  <linyu-modal :is-open="isOpen">
+  <zibolt-modal :is-open="isOpen">
     <div class="modify-user-info" @click.stop>
-      <linyu-avatar :info="{ name: name, avatar: avatar }" size="70px" />
-      <linyu-input
+      <zibolt-avatar :info="{ name: name, avatar: avatar }" size="70px" />
+      <zibolt-input
         v-model:value="avatar"
         label="头像URL"
         placeholder="请输入头像URL"
         height="40px"
         font-size="14px"
       />
-      <linyu-input
+      <zibolt-input
         v-model:value="name"
         label="用户名"
         placeholder="请输入用户名"
@@ -17,7 +17,7 @@
         font-size="14px"
         :readonly="true"
       />
-      <linyu-input
+      <zibolt-input
         v-model:value="email"
         label="邮箱"
         placeholder="请输入邮箱"
@@ -26,17 +26,17 @@
         :readonly="true"
       />
       <div class="flex gap-[15px] w-full justify-end mt-[20px]">
-        <linyu-button type="minor" @click="isOpen = false">取消</linyu-button>
-        <linyu-button @click="onUpdateUser">确定</linyu-button>
+        <zibolt-button type="minor" @click="isOpen = false">取消</zibolt-button>
+        <zibolt-button @click="onUpdateUser">确定</zibolt-button>
       </div>
     </div>
-  </linyu-modal>
+  </zibolt-modal>
 </template>
 <script setup>
-import LinyuModal from '@/components/LinyuModal.vue'
-import LinyuAvatar from '@/components/LinyuAvatar.vue'
-import LinyuInput from '@/components/LinyuInput.vue'
-import LinyuButton from '@/components/LinyuButton.vue'
+import ZiboltModal from '@/components/ZiboltModal.vue'
+import ZiboltAvatar from '@/components/ZiboltAvatar.vue'
+import ZiboltInput from '@/components/ZiboltInput.vue'
+import ZiboltButton from '@/components/ZiboltButton.vue'
 import { ref, watch } from 'vue'
 import { useUserInfoStore } from '@/stores/useUserInfoStore.js'
 import UserApi from '@/api/user.js'

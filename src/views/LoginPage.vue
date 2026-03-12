@@ -5,7 +5,7 @@
         @click="() => openUrl('https://space.bilibili.com/135427028/channel/series')"
         icon="icon-bilibili"
       />
-      <icon-button @click="() => openUrl('https://github.com/linyu-im')" icon="icon-github" />
+      <icon-button @click="() => openUrl('https://github.com/zibolt-chat')" icon="icon-github" />
       <icon-button
         v-if="themeStore.theme === 'light'"
         @click="(e) => toggleDark(e, 'dark')"
@@ -29,11 +29,11 @@
              sk的朋友圈
             </div>
             <div class="text-[18px] text-[rgba(var(--text-color),0.7)] leading-[20px]">
-              欢迎使用林语mini
+              欢迎使用ZiboltChat
             </div>
           </div>
           <div class="info">
-            <linyu-input
+            <zibolt-input
               v-model:value="password"
               placeholder="请输入群聊密码"
               type="password"
@@ -51,13 +51,13 @@
             </div>
           </div>
           <div class="info">
-            <linyu-input
+            <zibolt-input
               v-model:value="username"
               class="mb-[10px]"
               placeholder="用户名"
               @keydown.enter="onLogin"
             />
-            <linyu-input v-model:value="email" placeholder="邮箱" @keydown.enter="onLogin" />
+            <zibolt-input v-model:value="email" placeholder="邮箱" @keydown.enter="onLogin" />
           </div>
           <div @click="onLogin" :class="['login-button', { logging: logging }]">
             {{ !logging ? '进 入' : '请 等 待' }}
@@ -75,9 +75,9 @@
 <script setup>
 import { ref } from 'vue'
 import { useThemeStore } from '@/stores/useThemeStore.js'
-import LinyuInput from '@/components/LinyuInput.vue'
+import ZiboltInput from '@/components/ZiboltInput.vue'
 import { toggleDark } from '@/utils/theme.js'
-import IconButton from '@/components/LinyuIconButton.vue'
+import IconButton from '@/components/ZiboltIconButton.vue'
 import { useToast } from '@/components/ToastProvider.vue'
 import { useRoute, useRouter } from 'vue-router'
 import LoginApi from '@/api/login.js'

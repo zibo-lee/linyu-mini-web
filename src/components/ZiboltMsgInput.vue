@@ -1,5 +1,5 @@
 <template>
-  <div class="linyu-msg-input-container">
+  <div class="zibolt-msg-input-container">
     <teleport to="#app">
       <div
         v-if="isAtPopup && showMentionsPopup && userList.length > 0"
@@ -23,7 +23,7 @@
       ref="inputRef"
       tabindex="0"
       contenteditable
-      class="linyu-msg-input"
+      class="zibolt-msg-input"
       @keyup="onInputKeyUp"
       @keydown="onInputKeyDown"
       @input="onInputText"
@@ -369,12 +369,12 @@ defineExpose({
 </script>
 
 <style scoped lang="less">
-.linyu-msg-input-container {
+.zibolt-msg-input-container {
   width: 100%;
   position: relative;
   white-space: pre-wrap;
 
-  .linyu-msg-input {
+  .zibolt-msg-input {
     max-height: 100px;
     overflow: hidden;
     overflow-y: auto;

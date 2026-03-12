@@ -27,20 +27,20 @@
         @mouseenter="showMenu"
         @mouseleave="hideMenu"
       >
-        <linyu-tooltip content="引用">
-          <linyu-icon-button
+        <zibolt-tooltip content="引用">
+          <zibolt-icon-button
             @click="handlerSetReference"
             size="24px"
             font-size="16px"
             icon="icon-yinyong"
           />
-        </linyu-tooltip>
-        <linyu-tooltip v-if="right" content="撤回">
-          <linyu-icon-button @click="onRecallMsg" size="24px" font-size="16px" icon="icon-chehui" />
-        </linyu-tooltip>
-        <linyu-tooltip @click="handlerCopy" content="复制">
-          <linyu-icon-button size="24px" font-size="16px" icon="icon-fuzhi" />
-        </linyu-tooltip>
+        </zibolt-tooltip>
+        <zibolt-tooltip v-if="right" content="撤回">
+          <zibolt-icon-button @click="onRecallMsg" size="24px" font-size="16px" icon="icon-chehui" />
+        </zibolt-tooltip>
+        <zibolt-tooltip @click="handlerCopy" content="复制">
+          <zibolt-icon-button size="24px" font-size="16px" icon="icon-fuzhi" />
+        </zibolt-tooltip>
       </div>
     </transition>
   </div>
@@ -48,8 +48,8 @@
 
 <script setup>
 import { ref } from 'vue'
-import LinyuIconButton from '@/components/LinyuIconButton.vue'
-import LinyuTooltip from '@/components/LinyuTooltip.vue'
+import ZiboltIconButton from '@/components/ZiboltIconButton.vue'
+import ZiboltTooltip from '@/components/ZiboltTooltip.vue'
 import MessageApi from '@/api/message.js'
 import { useToast } from '@/components/ToastProvider.vue'
 import { useChatMsgStore } from '@/stores/useChatMsgStore.js'

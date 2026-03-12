@@ -1,9 +1,9 @@
 <template>
   <template v-if="visible">
-    <linyu-draggable-window v-if="!isReady" :rounded="20" :resize="false">
+    <zibolt-draggable-window v-if="!isReady" :rounded="20" :resize="false">
       <div class="file-answer">
         <div class="answer-content-wrapper">
-          <linyu-avatar :info="props.targetInfo" class="mr-[10px]" />
+          <zibolt-avatar :info="props.targetInfo" class="mr-[10px]" />
           <div class="answer-content">
             <div class="flex">
               <div class="answer-content-name">{{ props.targetInfo.name }}</div>
@@ -40,10 +40,10 @@
           </div>
         </div>
       </div>
-    </linyu-draggable-window>
-    <linyu-draggable-window v-if="isReady" :rounded="10" :resize="false">
+    </zibolt-draggable-window>
+    <zibolt-draggable-window v-if="isReady" :rounded="10" :resize="false">
       <div class="file-receive">
-        <linyu-circle-progress :progress="progress" :size="60" :strokeWidth="6" />
+        <zibolt-circle-progress :progress="progress" :size="60" :strokeWidth="6" />
         <div class="file-receive-label flex items-center">
           {{ progress >= 100 ? '传输完成' : '传输中' }}
           <loading-dots v-if="progress < 100" />
@@ -66,7 +66,7 @@
           </div>
         </div>
       </div>
-    </linyu-draggable-window>
+    </zibolt-draggable-window>
   </template>
 </template>
 
@@ -74,10 +74,10 @@
 import FileApi from '@/api/file.js'
 import { nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import EventBus from '@/utils/eventBus.js'
-import LinyuDraggableWindow from '@/components/LinyuDraggableWindow.vue'
-import LinyuAvatar from '@/components/LinyuAvatar.vue'
+import ZiboltDraggableWindow from '@/components/ZiboltDraggableWindow.vue'
+import ZiboltAvatar from '@/components/ZiboltAvatar.vue'
 import LoadingDots from '@/components/LoadingDots.vue'
-import LinyuCircleProgress from '@/components/LinyuCircleProgress.vue'
+import ZiboltCircleProgress from '@/components/ZiboltCircleProgress.vue'
 import { formatSize } from '../utils/common.js'
 import { useToast } from '@/components/ToastProvider.vue'
 

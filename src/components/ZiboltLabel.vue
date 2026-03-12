@@ -1,5 +1,5 @@
 <template>
-  <div ref="contentRef" class="linyu-label">
+  <div ref="contentRef" class="zibolt-label">
     <slot />
   </div>
 </template>
@@ -17,7 +17,7 @@ watch(contentRef, async () => {
 </script>
 
 <style>
-.linyu-label {
+.zibolt-label {
   font-size: 12px;
   padding: 1px 5px;
   background-color: rgba(var(--primary-color), 0.1);

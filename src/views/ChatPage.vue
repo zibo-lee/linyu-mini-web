@@ -19,9 +19,9 @@
     <!--通知-->
     <notify />
     <!--表情弹窗-->
-    <linyu-popup v-model:visible="isEmojiVisible" :position="emojiPosition">
-      <linyu-emoji-box @on-emoji="handlerOnEmoji" />
-    </linyu-popup>
+    <zibolt-popup v-model:visible="isEmojiVisible" :position="emojiPosition">
+      <zibolt-emoji-box @on-emoji="handlerOnEmoji" />
+    </zibolt-popup>
     <div class="chat-bg">
       <div class="chat-box">
         <!-- 左侧菜单 -->
@@ -29,7 +29,7 @@
           <div class="chat-list-title">
             <div class="relative flex">
               消息列表
-              <linyu-label class="absolute">v{{ version }}</linyu-label>
+              <zibolt-label class="absolute">v{{ version }}</zibolt-label>
             </div>
             <div class="close-btn" @click="showLeft = false">×</div>
           </div>
@@ -42,17 +42,17 @@
               }
             "
           >
-            <linyu-avatar :info="{ name: '群' }" size="40px" :color="2" class="mr-[10px]" />
+            <zibolt-avatar :info="{ name: '群' }" size="40px" :color="2" class="mr-[10px]" />
             <div class="chat-item-content">
               <div class="flex items-center mb-[5px]">
                 <div class="chat-content-name">{{ groupChat?.targetInfo?.name }}</div>
-                <linyu-dot-hint
+                <zibolt-dot-hint
                   v-if="groupChat?.unreadCount > 0 && targetId !== groupChat.targetId"
                   :text="groupChat?.unreadCount"
                 />
               </div>
               <div v-if="groupChat?.lastMessage" class="chat-content-msg">
-                <linyu-chat-list-content :msg="groupChat?.lastMessage" />
+                <zibolt-chat-list-content :msg="groupChat?.lastMessage" />
               </div>
             </div>
           </div>
@@ -75,20 +75,20 @@
                 }
               "
             >
-              <linyu-avatar :info="item.targetInfo" size="40px" class="mr-[10px]" />
+              <zibolt-avatar :info="item.targetInfo" size="40px" class="mr-[10px]" />
               <div class="chat-item-content">
                 <div class="flex items-center mb-[5px]">
                   <div class="chat-content-name">{{ item.targetInfo.name }}</div>
-                  <linyu-dot-hint
+                  <zibolt-dot-hint
                     v-if="item?.unreadCount > 0 && targetId !== item.targetId"
                     :text="item.unreadCount"
                   />
                 </div>
                 <div class="chat-content-msg">
-                  <linyu-chat-list-content :is-group="false" :msg="item?.lastMessage" />
+                  <zibolt-chat-list-content :is-group="false" :msg="item?.lastMessage" />
                 </div>
               </div>
-              <linyu-text-button
+              <zibolt-text-button
                 v-if="targetId === item.targetId"
                 text="移除"
                 class="ml-[10px]"
@@ -131,11 +131,11 @@
                 :key="item.id"
                 :class="{ right: item.fromId === userInfoStore.userId }"
               >
-                <linyu-msg :msg="item" :user="msgStore.userListMap.get(item.fromId)" />
+                <zibolt-msg :msg="item" :user="msgStore.userListMap.get(item.fromId)" />
               </div>
               <chat-skeleton v-if="isChatRecordLoading && msgRecord?.length <= 0 && !isComplete" />
               <div v-if="isSendLoading" class="flex w-full justify-center items-center">
-                <linyu-loading label="发送中" />
+                <zibolt-loading label="发送中" />
               </div>
               <div v-if="currentNewMsgCount > 0" class="new-msg-count" @click="scrollToBottom">
                 <img alt="" class="h-[18px] mr-[5px]" src="/down.png" />
@@ -175,7 +175,7 @@
                     />
                   </div>
                   <div class="ml-[10px]">
-                    <linyu-icon-button
+                    <zibolt-icon-button
                       @click="msgStore.referenceMsg = null"
                       size="20px"
                       font-size="12px"
@@ -188,7 +188,7 @@
                     <div class="iconfont icon-biaoqing text-[28px]" />
                   </div>
                   <div class="chat-msg-input">
-                    <linyu-msg-input
+                    <zibolt-msg-input
                       v-model:value="msgContent"
                       ref="msgInputRef"
                       @send="handlerSubmitMsg"
@@ -242,7 +242,7 @@
         <div class="box-right" :class="{ 'show-right': showRight }">
           <div class="right-top">
             <div class="flex items-center">
-              <linyu-avatar
+              <zibolt-avatar
                 :info="{ name: userInfoStore.userName, avatar: userInfoStore.avatar }"
                 size="40px"
                 class="mr-[5px] cursor-pointer"
@@ -251,17 +251,17 @@
               <div class="user-name">{{ userInfoStore.userName }}</div>
             </div>
             <div class="flex">
-              <linyu-icon-button
+              <zibolt-icon-button
                 v-if="themeStore.theme === 'light'"
                 @click="(e) => toggleDark(e, 'dark')"
                 icon="icon-taiyang"
               />
-              <linyu-icon-button
+              <zibolt-icon-button
                 v-if="themeStore.theme === 'dark'"
                 @click="(e) => toggleDark(e, 'light')"
                 icon="icon-yueliang"
               />
-              <linyu-icon-button @click="handlerLogout" icon="icon-tuichu" />
+              <zibolt-icon-button @click="handlerLogout" icon="icon-tuichu" />
             </div>
           </div>
           <div class="right-content">
@@ -269,7 +269,7 @@
               <div class="text-[rgb(var(--text-color))] text-[14px] font-[600]">
                 在线人数（{{ onlineCount }}）
               </div>
-              <linyu-input
+              <zibolt-input
                 placeholder="搜索用户"
                 height="30px"
                 width="140px"
@@ -287,27 +287,27 @@
               >
                 <div class="online-item-content">
                   <div class="w-[40px] h-[40px] relative">
-                    <linyu-avatar :info="item" size="40px" />
+                    <zibolt-avatar :info="item" size="40px" />
                     <div v-if="item.status?.length" class="online-status" />
                   </div>
                   <div class="online-username">{{ item.name }}</div>
-                  <linyu-tooltip
+                  <zibolt-tooltip
                     v-if="item.status?.includes('web')"
                     content="浏览器在线"
                     class="ml-[2px]"
                   >
                     <img src="/badge/web-online.png" alt="" class="h-[18px]" draggable="false" />
-                  </linyu-tooltip>
-                  <linyu-tooltip
+                  </zibolt-tooltip>
+                  <zibolt-tooltip
                     v-if="item.status?.includes('ssh')"
                     content="SSH在线"
                     class="ml-[2px]"
                   >
                     <img src="/badge/ssh-online.png" alt="" class="h-[18px]" />
-                  </linyu-tooltip>
+                  </zibolt-tooltip>
                 </div>
                 <div class="online-item-operation ml-[20px]">
-                  <linyu-text-button
+                  <zibolt-text-button
                     v-if="item.id !== userInfoStore.userId && item.type !== UserType.Bot"
                     text="私聊"
                     @click="
@@ -331,44 +331,44 @@
 import { computed, nextTick, onMounted, onUnmounted, reactive, ref, watch } from 'vue'
 import { useThemeStore } from '@/stores/useThemeStore.js'
 import { toggleDark } from '@/utils/theme.js'
-import LinyuInput from '@/components/LinyuInput.vue'
+import ZiboltInput from '@/components/ZiboltInput.vue'
 import { useRouter } from 'vue-router'
-import LinyuAvatar from '@/components/LinyuAvatar.vue'
+import ZiboltAvatar from '@/components/ZiboltAvatar.vue'
 import ChatListApi from '@/api/chatList.js'
-import LinyuDotHint from '@/components/LinyuDotHint.vue'
+import ZiboltDotHint from '@/components/ZiboltDotHint.vue'
 import MessageApi from '@/api/message.js'
 import EventBus from '@/utils/eventBus.js'
 import UserApi from '@/api/user.js'
 import FileApi from '@/api/file.js'
 import { SERVICE_URL } from '@/utils/axios.js'
-import LinyuTooltip from '@/components/LinyuTooltip.vue'
+import ZiboltTooltip from '@/components/ZiboltTooltip.vue'
 import ws from '@/utils/ws.js'
-import LinyuTextButton from '@/components/LinyuTextButton.vue'
+import ZiboltTextButton from '@/components/ZiboltTextButton.vue'
 import { useToast } from '@/components/ToastProvider.vue'
-import LinyuIconButton from '@/components/LinyuIconButton.vue'
-import LinyuMsg from '@/components/Msg/LinyuMsg.vue'
+import ZiboltIconButton from '@/components/ZiboltIconButton.vue'
+import ZiboltMsg from '@/components/Msg/ZiboltMsg.vue'
 import { useChatMsgStore } from '@/stores/useChatMsgStore.js'
-import LinyuPopup from '@/components/LinyuPopup.vue'
-import LinyuEmojiBox from '@/components/LinyuEmojiBox.vue'
+import ZiboltPopup from '@/components/ZiboltPopup.vue'
+import ZiboltEmojiBox from '@/components/ZiboltEmojiBox.vue'
 import EmojiMsg from '@/components/Msg/MsgContent/EmojiMsg.vue'
-import LinyuChatListContent from '@/components/Msg/LinyuChatListContent.vue'
+import ZiboltChatListContent from '@/components/Msg/ZiboltChatListContent.vue'
 import { MessageType } from '@/constant/messageType.js'
 import { MessageSource } from '@/constant/messageSource.js'
-import LinyuMsgInput from '@/components/LinyuMsgInput.vue'
+import ZiboltMsgInput from '@/components/ZiboltMsgInput.vue'
 import { UserType } from '@/constant/userType.js'
 import TextMsg from '@/components/Msg/MsgContent/TextMsg.vue'
 import VideoChat from '@/components/VideoChat.vue'
 import VideoApi from '@/api/video.js'
 import CallMsg from '@/components/Msg/MsgContent/CallMsg.vue'
 import FileTransfer from '@/components/FileTransfer.vue'
-import LinyuLabel from '@/components/LinyuLabel.vue'
+import ZiboltLabel from '@/components/ZiboltLabel.vue'
 import ModifyUserInfo from '@/components/ModifyUserInfo.vue'
 import { useUserInfoStore } from '@/stores/useUserInfoStore.js'
-import LinyuLoading from '@/components/LinyuLoading.vue'
+import ZiboltLoading from '@/components/ZiboltLoading.vue'
 import ChatSkeleton from '@/components/ChatSkeleton.vue'
 import Notify from '@/components/Notify.vue'
 
-let version = import.meta.env.VITE_LINYU_VERSION
+let version = import.meta.env.VITE_ZIBOLT_VERSION
 const themeStore = useThemeStore()
 const msgStore = useChatMsgStore()
 const userInfoStore = useUserInfoStore()

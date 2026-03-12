@@ -1,10 +1,10 @@
 <template>
   <template v-if="visible">
     <!--  语音接听-->
-    <linyu-draggable-window v-if="!isReady" :rounded="20" :resize="false">
+    <zibolt-draggable-window v-if="!isReady" :rounded="20" :resize="false">
       <div class="video-answer">
         <div class="flex items-center">
-          <linyu-avatar :info="props.targetInfo" class="mr-[10px]" />
+          <zibolt-avatar :info="props.targetInfo" class="mr-[10px]" />
           <div class="answer-content">
             <div class="answer-content-name">{{ props.targetInfo.name }}</div>
             <div class="answer-content-label flex items-center">
@@ -35,9 +35,9 @@
           </div>
         </div>
       </div>
-    </linyu-draggable-window>
+    </zibolt-draggable-window>
     <!--  语音通话-->
-    <linyu-draggable-window
+    <zibolt-draggable-window
       v-if="isReady && props.isOnlyAudio"
       :rounded="20"
       :resize="false"
@@ -45,7 +45,7 @@
     >
       <div class="audio-call" :class="{ reduced: isReduced }">
         <div class="audio-call-info">
-          <linyu-avatar :info="props.targetInfo" class="info-avatar" @click="isReduced = false" />
+          <zibolt-avatar :info="props.targetInfo" class="info-avatar" @click="isReduced = false" />
           <div class="info-content">
             <template v-if="!isReduced">
               <div class="content-name">{{ props.targetInfo.name }}</div>
@@ -87,9 +87,9 @@
         <video ref="local" autoPlay class="hidden" />
         <video ref="remote" autoPlay class="hidden" />
       </div>
-    </linyu-draggable-window>
+    </zibolt-draggable-window>
     <!--  视频通话-->
-    <linyu-draggable-window v-if="isReady && !props.isOnlyAudio" :rounded="20" :resize="false">
+    <zibolt-draggable-window v-if="isReady && !props.isOnlyAudio" :rounded="20" :resize="false">
       <div class="video-call">
         <video
           ref="local"
@@ -138,12 +138,12 @@
           </div>
         </div>
       </div>
-    </linyu-draggable-window>
+    </zibolt-draggable-window>
   </template>
 </template>
 <script setup>
-import LinyuDraggableWindow from '@/components/LinyuDraggableWindow.vue'
-import LinyuAvatar from '@/components/LinyuAvatar.vue'
+import ZiboltDraggableWindow from '@/components/ZiboltDraggableWindow.vue'
+import ZiboltAvatar from '@/components/ZiboltAvatar.vue'
 import LoadingDots from '@/components/LoadingDots.vue'
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useToast } from '@/components/ToastProvider.vue'
